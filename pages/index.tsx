@@ -1,18 +1,15 @@
 import styled from "styled-components";
-import { Heading } from "../src/components/LayoutComponents";
 
+import { PriceFilter } from "../src/features/filters/price/PriceFilter";
 
 const Home = () => {
   return (
-      <PageWrapper>
-        <Heading>Prague Labs testovací zadání</Heading>
-      </PageWrapper>
-  )
-}
+    <>
+      <PriceFilter prop1={""} />
+    </>
+  );
+};
 
-const PageWrapper = styled.div`
+const PageWrapper = styled.div``;
 
-`
-
-
-export default Home
+export default Home;
