@@ -1,12 +1,17 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import { AbilityToggle } from "./toggle/AbilityToggle";
 import styled from "styled-components";
+import ActionIcon from "@svg/action.svg";
 
 const AccessibilityFilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2.3rem 1.6rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.biege};
+
+  @media (min-width: ${({ theme }) => theme.bp.sm}) {
+    border-bottom: none;
+  }
 `;
 
 const FilterTitle = styled.p`
@@ -15,6 +20,11 @@ const FilterTitle = styled.p`
   letter-spacing: 0;
   color: ${({ theme }) => theme.colors.lightText};
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  > svg {
+    margin-left: 0.8rem;
+  }
 `;
 
 interface AccessibilityFilterProps {
@@ -26,7 +36,10 @@ export const AccessibilityFilter: FC<AccessibilityFilterProps> = ({
 }) => {
   return (
     <AccessibilityFilterContainer>
-      <FilterTitle>Okamžitá rezervace</FilterTitle>
+      <FilterTitle>
+        Okamžitá rezervace
+        <ActionIcon />
+      </FilterTitle>
       <AbilityToggle isImmediatelyAvailable={true} />
     </AccessibilityFilterContainer>
   );

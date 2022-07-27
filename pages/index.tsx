@@ -7,17 +7,16 @@ import { AccessibilityFilter } from "../src/features/filters/acessibility/Access
 import { getAllCaravans } from "../src/api/caravans/getAllCaravans";
 import { CaravansGetType } from "../src/api/caravans/types";
 import { CaravanCard } from "../src/features/caravans/card/CaravanCard";
+import { CaravansSearchResults } from "../src/features/caravans/CaravansSearchResults";
+import { CaravanFilters } from "../src/features/filters/CaravanFilters";
+import { FiltersContextProvider } from "../src/features/filters/FiltersContext";
 
 const Home: NextPage<{ data: CaravansGetType }> = ({ data }) => {
-  const mockItem = data.items[0];
   return (
-    <>
-      <PriceFilter prop1={""} />
-      <CaravanTypeFilter prop1={""} />
-      <AccessibilityFilter prop1={""} />
-
-      <CaravanCard {...mockItem} />
-    </>
+    <FiltersContextProvider>
+      <CaravanFilters />
+      <CaravansSearchResults caravansResults={data.items} />
+    </FiltersContextProvider>
   );
 };
 

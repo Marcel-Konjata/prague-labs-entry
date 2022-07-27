@@ -1,12 +1,16 @@
-import { FC, Fragment, useState } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
-import { Range, getTrackBackground } from "react-range";
+
 import { RangePicker } from "./RangePicker";
 import { PriceInput } from "./PriceInput";
 import { PRICE_MAX } from "./constants";
 
 const PriceFilterContainer = styled.div`
   padding: 2rem 3.1rem 2rem 1.6rem;
+  max-width: 32.8rem;
+  @media (min-width: ${({ theme }) => theme.bp.xl}) {
+    justify-self: end;
+  }
 `;
 
 const PriceFilterTitle = styled.p`

@@ -9,6 +9,18 @@ const CaravanTypeFilterContainer = styled.div`
   padding: 1.6rem;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.bp.sm}) {
+    border-bottom: none;
+    border-top: none;
+  }
+
+  @media (min-width: ${({ theme }) => theme.bp.xl}) {
+    border-bottom: none;
+    border-top: none;
+    border-left: 1px solid ${({ theme }) => theme.colors.biege};
+    border-right: 1px solid ${({ theme }) => theme.colors.biege};
+  }
 `;
 
 const FilterLabel = styled.label`

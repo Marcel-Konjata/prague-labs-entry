@@ -10,5 +10,10 @@ declare module "styled-components" {
       lightText: string;
       primaryText: string;
     };
+    bp: {
+      sm: "600px";
+      md: "960px";
+      xl: "1400px";
+    };
   }
 }

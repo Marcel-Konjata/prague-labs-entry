@@ -9,10 +9,15 @@ import ToiletIcon from "@svg/toilet.svg";
 import ActionIcon from "@svg/action.svg";
 
 const CardContainer = styled.div`
-  max-width: 34.3rem;
+  max-width: 39.2rem;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.biege};
   overflow: hidden;
+  min-width: 34.3rem;
+
+  @media (min-width: ${({ theme }) => theme.bp.xl}) {
+    width: 39.2rem;
+  }
 `;
 
 const CommonContainer = styled.div`
