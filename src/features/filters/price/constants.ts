@@ -1,3 +1,3 @@
-export const RANGE_STEP = 1;
-export const PRICE_MIN = 0;
+export const RANGE_STEP = 100;
+export const PRICE_MIN = 100;
 export const PRICE_MAX = 10000;

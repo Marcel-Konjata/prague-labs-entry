@@ -22,9 +22,9 @@ export const CaravanFilters: FC = () => {
   return (
     <MaxWidthContentContainer>
       <Container>
-        <PriceFilter prop1={""} />
-        <CaravanTypeFilter prop1={""} />
-        <AccessibilityFilter prop1={""} />
+        <PriceFilter />
+        <CaravanTypeFilter />
+        <AccessibilityFilter />
       </Container>
     </MaxWidthContentContainer>
   );

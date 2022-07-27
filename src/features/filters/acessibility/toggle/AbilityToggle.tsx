@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 
 import {
   AbilityToggleContainer,
@@ -8,41 +8,49 @@ import {
 } from "./AbilityToggle.styles";
 
 import ChevronDown from "@svg/chevronArrow.svg";
+import { useFiltersContext } from "../../FiltersContext";
 
-interface AbilityToggleProps {
-  isImmediatelyAvailable: boolean;
-}
-
-export const AbilityToggle: FC<AbilityToggleProps> = ({
-  isImmediatelyAvailable,
-}) => {
+export const AbilityToggle: FC = () => {
   const [isOptionOpen, setIsOptionOpen] = useState(false);
-  return (
-    <AbilityToggleContainer>
-      <ToggleButton
-        aria-label={"available-select-menu"}
-        onClick={() => setIsOptionOpen((state) => !state)}
-      >
-        <span>{isImmediatelyAvailable ? "Ano" : "Ne"}</span>
-        <ChevronDown />
-      </ToggleButton>
+  const { isImmediatelyAvailable, setIsImmediatelyAvailable } =
+    useFiltersContext();
 
-      {isOptionOpen && (
-        <OptionsWrapper>
-          <OptionButton
-            aria-label={"option-yes"}
-            isSelected={isImmediatelyAvailable}
-          >
-            Ano
-          </OptionButton>
-          <OptionButton
-            aria-label={"option-no"}
-            isSelected={!isImmediatelyAvailable}
-          >
-            Ne
-          </OptionButton>
-        </OptionsWrapper>
-      )}
-    </AbilityToggleContainer>
+  return useMemo(
+    () => (
+      <AbilityToggleContainer>
+        <ToggleButton
+          aria-label={"available-select-menu"}
+          onClick={() => setIsOptionOpen((state) => !state)}
+        >
+          <span>{isImmediatelyAvailable ? "Ano" : "Ne"}</span>
+          <ChevronDown />
+        </ToggleButton>
+
+        {isOptionOpen && (
+          <OptionsWrapper>
+            <OptionButton
+              aria-label={"option-yes"}
+              isSelected={isImmediatelyAvailable}
+              onClick={() => setIsImmediatelyAvailable(true)}
+            >
+              Ano
+            </OptionButton>
+            <OptionButton
+              aria-label={"option-no"}
+              isSelected={!isImmediatelyAvailable}
+              onClick={() => setIsImmediatelyAvailable(false)}
+            >
+              Ne
+            </OptionButton>
+          </OptionsWrapper>
+        )}
+      </AbilityToggleContainer>
+    ),
+    [
+      isOptionOpen,
+      setIsOptionOpen,
+      isImmediatelyAvailable,
+      setIsImmediatelyAvailable,
+    ]
   );
 };

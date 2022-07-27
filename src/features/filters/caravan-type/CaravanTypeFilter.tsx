@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { VehicleType } from "../../../api/caravans/types";
 import { FilterButton } from "./FilterButton";
+import { useFiltersContext } from "../FiltersContext";
 
 const CaravanTypeFilterContainer = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.biege};
@@ -66,11 +67,7 @@ const filterTypes: Array<FilterType> = [
   },
 ];
 
-interface CaravanTypeFilterProps {
-  prop1: string;
-}
-
-export const CaravanTypeFilter: FC<CaravanTypeFilterProps> = ({ prop1 }) => {
+export const CaravanTypeFilter: FC = () => {
   return (
     <CaravanTypeFilterContainer>
       <FilterLabel>Typ karavanu</FilterLabel>

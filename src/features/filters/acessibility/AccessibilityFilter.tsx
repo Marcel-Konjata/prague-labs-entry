@@ -27,20 +27,14 @@ const FilterTitle = styled.p`
   }
 `;
 
-interface AccessibilityFilterProps {
-  prop1: string;
-}
-
-export const AccessibilityFilter: FC<AccessibilityFilterProps> = ({
-  prop1,
-}) => {
+export const AccessibilityFilter: FC = ({}) => {
   return (
     <AccessibilityFilterContainer>
       <FilterTitle>
         Okamžitá rezervace
         <ActionIcon />
       </FilterTitle>
-      <AbilityToggle isImmediatelyAvailable={true} />
+      <AbilityToggle />
     </AccessibilityFilterContainer>
   );
 };

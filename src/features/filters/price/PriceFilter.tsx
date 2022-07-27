@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { RangePicker } from "./RangePicker";
 import { PriceInput } from "./PriceInput";
-import { PRICE_MAX } from "./constants";
+import { PRICE_MAX, PRICE_MIN } from "./constants";
+import { useFiltersContext } from "../FiltersContext";
 
 const PriceFilterContainer = styled.div`
   padding: 2rem 3.1rem 2rem 1.6rem;
@@ -25,35 +26,38 @@ const InputsContainer = styled.div`
   display: flex;
 `;
 
-interface PriceFilterProps {
-  prop1: string;
-}
+export const PriceFilter: FC = () => {
+  const { minPrice, maxPrice, setMinPrice, setMaxPrice } = useFiltersContext();
 
-export const PriceFilter: FC<PriceFilterProps> = ({ prop1 }) => {
-  const [rangeMinimumValue, setRangeMinimumValue] = useState(0);
-  const [rangeMaximumValue, setRangeMaximumValue] = useState(50);
+  useEffect(() => {
+    if (minPrice >= maxPrice) {
+      setMaxPrice(minPrice);
+    }
+  }, [minPrice, maxPrice, setMaxPrice]);
 
   return (
     <PriceFilterContainer>
       <PriceFilterTitle>Cena za den</PriceFilterTitle>
       <RangePicker
-        rangeMinimumValue={rangeMinimumValue}
-        setRangeMinimumValue={setRangeMinimumValue}
-        rangeMaximumValue={rangeMaximumValue}
-        setRangeMaximumValue={setRangeMaximumValue}
+        rangeMinimumValue={minPrice}
+        setRangeMinimumValue={setMinPrice}
+        rangeMaximumValue={maxPrice}
+        setRangeMaximumValue={setMaxPrice}
       />
       <InputsContainer>
         <PriceInput
-          inputValue={rangeMinimumValue}
+          inputValue={minPrice}
           placeholderText={"Od"}
-          setInputValue={setRangeMinimumValue}
+          setInputValue={setMinPrice}
           maxNumberConstrain={PRICE_MAX}
+          minNumberConstrain={PRICE_MIN}
         />
         <PriceInput
-          inputValue={rangeMaximumValue}
-          setInputValue={setRangeMaximumValue}
+          inputValue={maxPrice}
+          setInputValue={setMaxPrice}
           placeholderText={"Do"}
           maxNumberConstrain={PRICE_MAX}
+          minNumberConstrain={PRICE_MIN}
         />
       </InputsContainer>
     </PriceFilterContainer>

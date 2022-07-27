@@ -128,7 +128,7 @@ export const CaravanCard: FC<Caravan> = (props) => {
       <PriceContainer>
         <StyledPriceText>cena od</StyledPriceText>
         <StyledPriceValue>
-          <div>{props.price}/den</div>
+          <div>{props.price} kč/den</div>
           {props.instantBookable && <ActionIcon />}
         </StyledPriceValue>
       </PriceContainer>

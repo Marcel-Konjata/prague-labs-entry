@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { VehicleType } from "../../../api/caravans/types";
 import styled, { css } from "styled-components";
+import { useFiltersContext } from "../FiltersContext";
 
 const FilterButtonContainer = styled.button<{ isSelected: boolean }>`
   padding: 1.1rem 2rem;
@@ -45,10 +46,29 @@ export const FilterButton: FC<FilterButtonProps> = ({
   vehicleType,
   description,
 }) => {
-  return (
-    <FilterButtonContainer onClick={() => {}} isSelected={false}>
-      <StyledLabel>{label}</StyledLabel>
-      <StyledDescription>{description}</StyledDescription>
-    </FilterButtonContainer>
+  const { setTypeSelected, typeSelected } = useFiltersContext();
+  const selectType = useCallback(() => {
+    if (typeSelected.includes(vehicleType)) {
+      setTypeSelected((state) => state.filter((type) => type !== vehicleType));
+      return;
+    }
+
+    setTypeSelected((state) => state.concat(vehicleType));
+  }, [typeSelected, setTypeSelected, vehicleType]);
+
+  const isFilterSelected = useMemo(
+    () => typeSelected.includes(vehicleType),
+    [vehicleType, typeSelected]
+  );
+
+  // this will prevent rerender due to any changes useFiltersContext
+  return useMemo(
+    () => (
+      <FilterButtonContainer onClick={selectType} isSelected={isFilterSelected}>
+        <StyledLabel>{label}</StyledLabel>
+        <StyledDescription>{description}</StyledDescription>
+      </FilterButtonContainer>
+    ),
+    [selectType, isFilterSelected, label, description]
   );
 };

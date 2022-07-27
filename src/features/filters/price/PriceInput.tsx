@@ -1,4 +1,4 @@
-import React, { FC, SetStateAction } from "react";
+import React, { FC, memo, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 
@@ -44,24 +44,33 @@ interface PriceInputProps {
   setInputValue: React.Dispatch<SetStateAction<number>>;
   placeholderText?: string;
   maxNumberConstrain: number;
+  minNumberConstrain: number;
 }
 
-export const PriceInput: FC<PriceInputProps> = ({
+const Input: FC<PriceInputProps> = ({
   inputValue,
   setInputValue,
   placeholderText = "",
   maxNumberConstrain,
+  minNumberConstrain,
 }) => {
+  //callback is not necessary due to memo
   const onValueChange = (value: string) => {
     if (value === "" || value == null) {
-      setInputValue(0);
+      setInputValue(minNumberConstrain);
       return;
     }
 
     const valueAsNumber = parseInt(value);
 
-    if (valueAsNumber > maxNumberConstrain) {
+    if (valueAsNumber <= minNumberConstrain) {
+      setInputValue(minNumberConstrain);
+      return;
+    }
+
+    if (valueAsNumber >= maxNumberConstrain) {
       setInputValue(maxNumberConstrain);
+
       return;
     }
 
@@ -78,9 +87,17 @@ export const PriceInput: FC<PriceInputProps> = ({
         onValueChange={(values) => onValueChange(values.value)}
         allowNegative={false}
         allowedDecimalSeparators={[]}
+        allowLeadingZeros={false}
+        displayType={"input"}
+        isAllowed={({ floatValue }) =>
+          (floatValue as number) <= maxNumberConstrain &&
+          (floatValue as number) >= minNumberConstrain
+        }
       />
 
       <CurrencyLabel>Kč</CurrencyLabel>
     </InputContainer>
   );
 };
+
+export const PriceInput = memo(Input);
