@@ -7,6 +7,7 @@ import BedIcon from "@svg/bed.svg";
 import PassengerIcon from "@svg/passenger.svg";
 import ToiletIcon from "@svg/toilet.svg";
 import ActionIcon from "@svg/action.svg";
+import { Carousel } from "./Carousel";
 
 const CardContainer = styled.div`
   max-width: 39.2rem;
@@ -101,12 +102,13 @@ export const CaravanCard: FC<Caravan> = (props) => {
   return (
     <CardContainer>
       <div style={{ height: "190px", position: "relative" }}>
-        <Image
-          src={props.pictures[0]}
-          layout={"fill"}
-          objectFit={"cover"}
-          unoptimized={true}
-        />
+        {/*<Image*/}
+        {/*  src={props.pictures[0]}*/}
+        {/*  layout={"fill"}*/}
+        {/*  objectFit={"cover"}*/}
+        {/*  unoptimized={true}*/}
+        {/*/>*/}
+        <Carousel imageSources={props.pictures} />
       </div>
       <CommonContainer>
         <TypeName>{props.vehicleType}</TypeName>
