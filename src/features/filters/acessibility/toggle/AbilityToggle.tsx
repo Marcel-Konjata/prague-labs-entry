@@ -7,6 +7,8 @@ import {
   OptionsWrapper,
 } from "./AbilityToggle.styles";
 
+import ChevronDown from "@svg/chevronArrow.svg";
+
 interface AbilityToggleProps {
   isImmediatelyAvailable: boolean;
 }
@@ -22,13 +24,7 @@ export const AbilityToggle: FC<AbilityToggleProps> = ({
         onClick={() => setIsOptionOpen((state) => !state)}
       >
         <span>{isImmediatelyAvailable ? "Ano" : "Ne"}</span>
-
-        <Image
-          src={"/svg/chevronArrow.svg"}
-          width={24}
-          height={24}
-          alt={"arrow"}
-        />
+        <ChevronDown />
       </ToggleButton>
 
       {isOptionOpen && (

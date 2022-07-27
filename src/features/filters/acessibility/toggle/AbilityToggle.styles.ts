@@ -38,4 +38,6 @@ export const OptionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.biege};
+  z-index: 10;
+  background: white;
 `;

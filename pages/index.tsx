@@ -6,13 +6,17 @@ import { CaravanTypeFilter } from "../src/features/filters/caravan-type/CaravanT
 import { AccessibilityFilter } from "../src/features/filters/acessibility/AccessibilityFilter";
 import { getAllCaravans } from "../src/api/caravans/getAllCaravans";
 import { CaravansGetType } from "../src/api/caravans/types";
+import { CaravanCard } from "../src/features/caravans/card/CaravanCard";
 
 const Home: NextPage<{ data: CaravansGetType }> = ({ data }) => {
+  const mockItem = data.items[0];
   return (
     <>
       <PriceFilter prop1={""} />
       <CaravanTypeFilter prop1={""} />
       <AccessibilityFilter prop1={""} />
+
+      <CaravanCard {...mockItem} />
     </>
   );
 };
