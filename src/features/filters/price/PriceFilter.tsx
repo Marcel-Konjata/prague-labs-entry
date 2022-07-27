@@ -10,8 +10,8 @@ const PriceFilterContainer = styled.div`
 `;
 
 const PriceFilterTitle = styled.p`
+  color: ${({ theme }) => theme.colors.lightText};
   user-select: none;
-  color: #9c8c8c;
   text-align: left;
   font: normal normal normal 16px/16px Roboto;
   letter-spacing: 0;

@@ -7,6 +7,7 @@ import {
   RangeTrack,
 } from "./RangePicker.styles";
 import { PRICE_MAX, PRICE_MIN, RANGE_STEP } from "./constants";
+import { useTheme } from "styled-components";
 
 interface RangePickerProps {
   rangeMinimumValue: number;
@@ -21,6 +22,9 @@ export const RangePicker: FC<RangePickerProps> = ({
   rangeMaximumValue,
   setRangeMinimumValue,
 }) => {
+  // @ts-ignore use theme not inferring extended .d.ts file
+  const { colors } = useTheme();
+
   return (
     <RangeContainer>
       <Range
@@ -45,7 +49,7 @@ export const RangePicker: FC<RangePickerProps> = ({
               style={{
                 background: getTrackBackground({
                   values: [rangeMinimumValue, rangeMaximumValue],
-                  colors: ["beige", "green", "beige"],
+                  colors: [colors.biege, colors.green, colors.biege],
                   min: PRICE_MIN,
                   max: PRICE_MAX,
                 }),

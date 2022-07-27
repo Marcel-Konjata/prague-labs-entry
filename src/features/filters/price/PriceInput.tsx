@@ -6,7 +6,7 @@ const InputContainer = styled.div`
   display: flex;
   align-items: center;
   padding-right: 18px;
-  border: 1px solid #edeae3;
+  border: 1px solid ${({ theme }) => theme.colors.biege};
   border-radius: 8px;
 
   &:not(:last-of-type) {
@@ -18,7 +18,7 @@ const StyledInPut = styled.input`
   padding: 1rem;
   font: normal normal normal 16px/16px Roboto;
   letter-spacing: 0;
-  color: #1f2244;
+  color: ${({ theme }) => theme.colors.primaryText};
   opacity: 1;
   width: 100%;
 
@@ -35,7 +35,7 @@ const CurrencyLabel = styled.span`
   text-align: right;
   font: normal normal normal 16px/16px Roboto;
   letter-spacing: 0;
-  color: #9c8c8c;
+  color: ${({ theme }) => theme.colors.lightText};
   user-select: none;
 `;
 
